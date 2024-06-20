@@ -71,13 +71,16 @@ CMD ["apachectl", "-D", "FOREGROUND"]
 
 ### Inspeccionar la imagen creada
 # COMPLETAR CON UNA CAPTURA
+```
+docker inspect dockerfile:1.0
+```
 ![image](https://github.com/jossC11/2024A-ISWD633-Practica4/assets/94476123/b94e16b0-5a3f-451c-98da-6268244e02ad)
 
 **Modificar el archivo index.html para incluir su nombre**
 ![image](https://github.com/jossC11/2024A-ISWD633-Practica4/assets/94476123/5a5a6fab-6428-4b59-8a84-03ecc501f4b7)
 
 **¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
-
+Luego de modificar el index y crear la imagen parece que se esta reutilizando los resultados de la ejecución previamente echa .
 ## Mecanismo de caché
 Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso de construcción y evitar la repetición de pasos que no han cambiado. Cada instrucción en un Dockerfile crea una capa en la imagen final. Docker intenta reutilizar las capas de una construcción anterior si no han cambiado, lo que reduce significativamente el tiempo de construcción.
 
@@ -89,16 +92,15 @@ Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso
 ### Crear un contenedor a partir de las imagen creada, mapear todos los puertos
 ```
 docker run -d -p 80:80 --name myapp_container dockerfile:1.0
+```
 ![image](https://github.com/jossC11/2024A-ISWD633-Practica4/assets/94476123/5f6ce5ab-9b56-4406-85c4-6014e713a858)
 
 ```
 
 ### ¿Con que puerto host se está realizando el mapeo?
 con el puerto 80 del host al 80 del container.
-# COMPLETAR CON LA RESPUESTA
 
 **¿Qué es una imagen huérfana?**
-# COMPLETAR CON LA RESPUESTA
 ```
 Una imagen huérfana en Docker es como un archivo que queda sin uso después de eliminar o detener un contenedor. 
 Está ahí, ocupando espacio en tu sistema, pero no está asociada a ningún contenedor activo ni tiene una etiqueta que la identifique.
